@@ -1,7 +1,7 @@
 export default function AdminPostPage({ }) {
   return (
     <main>
-        <h1>Edit Post</h1>
+        <h1>Edit</h1>
     </main>
   )
 }
