@@ -1,43 +1,46 @@
 import { auth, googleAuthProvider } from '../lib/firebase';
+
 import { useContext } from 'react';
-import { UserContext} from '../lib/context';
+import { UserContext } from '../lib/context';
+
 
 export default function Enter(props) {
   const { user, username } = useContext(UserContext)
 
 
+  // 1. user signed out <SignInButton />
+  // 2. user signed in, but missing username <UsernameForm />
+  // 3. user signed in, has username <SignOutButton />
   return (
     <main>
-        {user ?
-          !username ? <UsernameForm /> : <SignOutButton />
-          :
-          <SignInButton />
-        }
+      {user ? 
+        !username ? <UsernameForm /> : <SignOutButton /> 
+        : 
+        <SignInButton />
+      }
     </main>
   );
 }
 
-// 
+// Sign in with Google button
+// OPT handle errors with try/catch
 function SignInButton() {
-  // TODO: OPT hanlde errors with try/cath
-  const singInWithGoogle = async () => {
+  const signInWithGoogle = async () => {
     await auth.signInWithPopup(googleAuthProvider);
   };
 
   return (
-    <button className="btn-google" onClick={singInWithGoogle}>
-      <img src={'/google.png'} /> Sing in with Google
+    <button className="btn-google" onClick={signInWithGoogle}>
+      <img src={'/google.png'} /> Sign in with Google
     </button>
   );
 }
 
-// Sing out button
+// Sign out button
 function SignOutButton() {
-  return <button onClick={() => auth.signOut()}>Sing out</button>;
+  return <button onClick={() => auth.signOut()}>Sign Out</button>;
 }
 
-// 
 function UsernameForm() {
-  return null
+  return <h1>Form</h1>; 
 }
- 

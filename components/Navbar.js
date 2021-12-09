@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { auth, googleAuthProvider } from '../lib/firebase';
 import { useContext } from 'react';
 import { UserContext } from '../lib/context';
 
@@ -17,10 +18,10 @@ export default function Navbar() {
         {/*user is singed-in and has username */}
         {username && (
           <>
-            <li className="push-left">
+            {/* <li className="push-left">
               <button onClick={() => auth.signOut()}>Sing out</button>
-            </li>
-            <li>
+            </li> */}
+            <li className="push-left">
               <Link href="/admin">
                 <button className="btn-blue">Write Posts</button>
               </Link>
