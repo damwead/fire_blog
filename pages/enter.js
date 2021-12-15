@@ -44,7 +44,7 @@ function UsernameForm() {
   const [formValue, setFormValue] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  
   const { user, username} = useContext(UserContext);
 
   const onSubmit = async (e) => {
@@ -66,6 +66,7 @@ function UsernameForm() {
     // Force form value typed in form to match correct format
     const val = e.target.value.toLowerCase();
     const re = /^(?=[a-zA-Z0-9._]{3,15}$)(?!.*[_.]{2})[^_.].*[^_.]$/;
+
 
     // Only set form value if length is < 3 OR it passes regex
     if (val.length < 3) {
